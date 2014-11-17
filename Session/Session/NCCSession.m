@@ -48,11 +48,12 @@ static NSString *bundleShortVersion;
         }
     });
     
-    [self updateUserId:userId userInfo:userInfo service:service];
+    [_sharedSession setUserId:userId userInfo:userInfo service:service];
     
     return _sharedSession;
 }
 
+/*
 + (BOOL)updateUserId:(NSString *)userId userInfo:(NSDictionary *)userInfo service:(NSString *)service
 {
     NCCSession *session = _sharedSession;
@@ -60,18 +61,22 @@ static NSString *bundleShortVersion;
     
     return [self save];
 }
-
+*/
 + (instancetype)sharedSession
 {
     return _sharedSession;
 }
 
-- (void)updateUserId:(NSString *)userId userInfo:(NSDictionary *)userInfo service:(NSString *)service
+- (void)setUserId:(NSString *)userId userInfo:(NSDictionary *)userInfo service:(NSString *)service
 {
     _userId = userId;
     _userInfo = userInfo;
     if (service) {
         _keychainManager = [NCCKeychainManager managerWithService:service];
+    }
+    
+    if (![self save]) {
+        NSLog(@"ERROR Saving NCCSession");
     }
 }
 
@@ -81,20 +86,11 @@ static NSString *bundleShortVersion;
 {
     if (_sharedSession) {
         [_keychainManager deleteCredentialsForUser:_sharedSession.userId];
-        [_sharedSession updateUserId:nil userInfo:nil service:nil];
+        [_sharedSession setUserId:nil userInfo:nil service:nil];
     }
 }
 
 #pragma mark - Save
-
-+ (BOOL)save
-{
-    if (_sharedSession) {
-        return [(NCCSession *)_sharedSession save];
-    }
-    
-    return NO;
-}
 
 - (BOOL)save
 {
@@ -155,7 +151,6 @@ static NSString *bundleShortVersion;
 
 + (BOOL)isValid
 {
-//    SLD_Session *session = [self sharedSession];
     if (_sharedSession) {
         return (_sharedSession.userInfo != nil);
     }
