@@ -39,7 +39,7 @@ static NSString *bundleShortVersion;
 
 #pragma mark - Lifecycle
 
-+ (instancetype)sharedSessionWithUserId:(NSString *)userId userInfo:(NSDictionary *)userInfo service:(NSString *)service;
++ (instancetype)createSessionWithUserId:(NSString *)userId userInfo:(NSDictionary *)userInfo service:(NSString *)service;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -106,7 +106,7 @@ static NSString *bundleShortVersion;
     return success;
 }
 
-+ (instancetype)savedSessionWithService:(NSString *)service userId:(NSString *)userId
++ (instancetype)sessionWithService:(NSString *)service userId:(NSString *)userId
 {
     NCCSession *session = nil;
     
@@ -114,18 +114,18 @@ static NSString *bundleShortVersion;
         _keychainManager = [NCCKeychainManager managerWithService:service];
         NSDictionary *sessionCredentials = [_keychainManager credentialsForUser:userId];
         if (sessionCredentials) {
-            session = [NCCSession sharedSessionWithUserId:userId userInfo:sessionCredentials service:service];
+            session = [NCCSession createSessionWithUserId:userId userInfo:sessionCredentials service:service];
         }
     }
     
     return session;
 }
 
-+ (instancetype)savedSessionWithService:(NSString *)service;
++ (instancetype)sessionWithService:(NSString *)service;
 {
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:SESSION_USER_ID];
     
-    return [self savedSessionWithService:service userId:userId];
+    return [self sessionWithService:service userId:userId];
 }
 
 #pragma mark - Getters / Setters

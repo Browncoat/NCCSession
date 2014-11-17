@@ -25,9 +25,9 @@
 @property (nonatomic, strong ,readonly) NSString *userId;
 @property (nonatomic, strong, readonly) NSDictionary *userInfo;
 
-+ (instancetype)sharedSessionWithUserId:(NSString *)userId userInfo:(NSDictionary *)credentials service:(NSString *)service;
-+ (instancetype)savedSessionWithService:(NSString *)service userId:(NSString *)userId;
-+ (instancetype)savedSessionWithService:(NSString *)service;
++ (instancetype)createSessionWithUserId:(NSString *)userId userInfo:(NSDictionary *)credentials service:(NSString *)service;
++ (instancetype)sessionWithService:(NSString *)service userId:(NSString *)userId;
++ (instancetype)sessionWithService:(NSString *)service;
 + (instancetype)sharedSession;
 + (BOOL)isValid;
 + (void)invalidateSession;
