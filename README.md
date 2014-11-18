@@ -17,7 +17,7 @@ iOS 5.1+
 
 ## Usage
 
-To create a session and pass a dictionary to be stored in the keychain to userInfo
+To create a session and pass a dictionary to be stored in the keychain
 ```objective-c
 NCCSession *session = [NCCSession createSessionWithUserId:userId userInfo:@{SESSION_TOKEN_NAME:accessToken, 
                                                       SESSION_ID_NAME:sessionId, 
@@ -28,17 +28,17 @@ NCCSession *session = [NCCSession createSessionWithUserId:userId userInfo:@{SESS
 In `application:didFinishLaunchingWithOptions:` check to see if a session has already been saved 
 ```objective-c
 NCCSession *session = [NCCSession sessionWithService:@"com.yourapp"];
-    if ([NCCSession isValid]) {
-        [self doStuff];
-    }
+if ([NCCSession isValid]) {
+    [self doStuff];
+}
 ```
 
-Then retrieve the userInfo dictionary that was previously store in the session keychain
+Retrieve the userInfo dictionary that was previously store in the session keychain
 ```objective-c
 NSDictionary *userInfo = [[NCCSession sharedSession] userInfo];
 ```
 
-To clear a session user
+Clear a session user
 ```objective-c
 [NCCSession invalidateSession];
 ```
