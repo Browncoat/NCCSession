@@ -35,9 +35,14 @@
 {
     NSMutableArray *users = [User users];
     User *user = [users filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"uid == %@", self.uid]].lastObject;
-    [[User users] removeObject:user];
+    if (user) {
+        self.uid = user.uid;
+        [users removeObject:user];
+    } else {
+        self.uid = [[NSUUID UUID] UUIDString];
+    }
     
-    [[User users] addObject:self];
+    [users addObject:self];
     
     [[User userDefaults] setObject:users forKey:USERS];
 }

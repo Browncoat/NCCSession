@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,56 +16,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2lS-jN-986">
-                                <rect key="frame" x="277" y="181" width="38" height="30"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didPressLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IDW-eK-1WS"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xf7-Fk-tbR">
-                                <rect key="frame" x="272" y="246" width="49" height="30"/>
-                                <state key="normal" title="Logout">
+                                <rect key="frame" x="272" y="246" width="44" height="30"/>
+                                <state key="normal" title="Delete">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didPressLogoutButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jiJ-CU-dBn"/>
+                                    <action selector="didPressDeleteButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZBQ-cg-Pxj"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELF-Hh-Q2h">
-                                <rect key="frame" x="16" y="64" width="568" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJr-PX-1HU">
-                                <rect key="frame" x="16" y="99" width="568" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BVJ-en-MoY">
+                                <rect key="frame" x="16" y="38" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xX5-Fi-nNw">
+                                <rect key="frame" x="16" y="76" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="roL-nD-HS6">
+                                <rect key="frame" x="16" y="114" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1dF-S2-4Pz">
+                                <rect key="frame" x="16" y="152" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2lS-jN-986">
+                                <rect key="frame" x="277" y="208" width="34" height="30"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressSaveButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nyv-WJ-Jme"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="EJr-PX-1HU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="5H5-Ym-S21"/>
-                            <constraint firstItem="ELF-Hh-Q2h" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="6O2-xg-FjC"/>
                             <constraint firstAttribute="centerX" secondItem="2lS-jN-986" secondAttribute="centerX" id="6V4-Mj-siG"/>
-                            <constraint firstAttribute="centerX" secondItem="ELF-Hh-Q2h" secondAttribute="centerX" id="M7I-fI-SLy"/>
-                            <constraint firstItem="EJr-PX-1HU" firstAttribute="top" secondItem="ELF-Hh-Q2h" secondAttribute="bottom" constant="14" id="RJh-qT-Waz"/>
-                            <constraint firstItem="EJr-PX-1HU" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="hia-L6-a7K"/>
-                            <constraint firstItem="ELF-Hh-Q2h" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="qd9-b4-hsJ"/>
+                            <constraint firstItem="1dF-S2-4Pz" firstAttribute="top" secondItem="roL-nD-HS6" secondAttribute="bottom" constant="8" id="9Od-PX-Obe"/>
+                            <constraint firstAttribute="centerX" secondItem="1dF-S2-4Pz" secondAttribute="centerX" id="AS0-m5-Mal"/>
+                            <constraint firstAttribute="centerX" secondItem="BVJ-en-MoY" secondAttribute="centerX" id="eZx-kH-DsO"/>
+                            <constraint firstItem="xX5-Fi-nNw" firstAttribute="top" secondItem="BVJ-en-MoY" secondAttribute="bottom" constant="8" id="fMB-Ln-bA8"/>
+                            <constraint firstItem="roL-nD-HS6" firstAttribute="top" secondItem="xX5-Fi-nNw" secondAttribute="bottom" constant="8" id="iFH-tq-Tkm"/>
+                            <constraint firstItem="BVJ-en-MoY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="18" id="igu-kN-xsH"/>
+                            <constraint firstAttribute="centerX" secondItem="xX5-Fi-nNw" secondAttribute="centerX" id="mc9-Aw-sYO"/>
+                            <constraint firstItem="2lS-jN-986" firstAttribute="top" secondItem="1dF-S2-4Pz" secondAttribute="bottom" constant="26" id="qHd-4C-qZH"/>
                             <constraint firstItem="xf7-Fk-tbR" firstAttribute="top" secondItem="2lS-jN-986" secondAttribute="bottom" constant="35" id="qu5-o0-YlU"/>
-                            <constraint firstItem="ELF-Hh-Q2h" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ste-On-AwN"/>
-                            <constraint firstItem="2lS-jN-986" firstAttribute="top" secondItem="EJr-PX-1HU" secondAttribute="bottom" constant="61" id="tRl-X4-RPS"/>
-                            <constraint firstAttribute="centerX" secondItem="EJr-PX-1HU" secondAttribute="centerX" id="tlX-zD-Zdr"/>
+                            <constraint firstItem="xf7-Fk-tbR" firstAttribute="top" secondItem="2lS-jN-986" secondAttribute="bottom" constant="8" id="sd6-VO-rYO"/>
+                            <constraint firstAttribute="centerX" secondItem="roL-nD-HS6" secondAttribute="centerX" id="tsc-4w-bbW"/>
                             <constraint firstAttribute="centerX" secondItem="xf7-Fk-tbR" secondAttribute="centerX" id="v5Q-1B-WeS"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="passwordLabel" destination="EJr-PX-1HU" id="6EJ-y2-1sF"/>
-                        <outlet property="usernameLabel" destination="ELF-Hh-Q2h" id="C7Y-ed-rBi"/>
+                        <outlet property="firstNameTextField" destination="roL-nD-HS6" id="cWD-fh-NBe"/>
+                        <outlet property="lastNameTextField" destination="1dF-S2-4Pz" id="tt3-di-XcH"/>
+                        <outlet property="passwordTextField" destination="xX5-Fi-nNw" id="FM1-VN-swn"/>
+                        <outlet property="usernameTextField" destination="BVJ-en-MoY" id="JD4-eN-pjG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

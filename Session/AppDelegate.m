@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "NCCSession.h"
-#import "User.h"
 
 #define SERVICE @"com.browncoatapps"
 
@@ -23,9 +22,8 @@
     // Override point for customization after application launch.
     [NCCSession sessionWithService:SERVICE];
     if ([NCCSession isValid]) {
-        User *currentUser = [User userWithId:[[NCCSession sharedSession] userInfo][@"id"]]];
-    } else {
-        [User deleteAllUsers];
+        self.user = [User userWithId:[[NCCSession sharedSession] userInfo][@"id"]];
+        NSLog(@"%@", _user);
     }
     
     return YES;

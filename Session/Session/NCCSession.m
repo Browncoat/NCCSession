@@ -28,7 +28,8 @@
 #import <net/if_dl.h>
 #import "NCCKeychainManager.h"
 
-#define SESSION_USER_ID @"ncc_session_user_id"
+#define NCCSESSION_USER_ID @"ncc_session_user_id"
+#define NCCSESSION_DEVICE_ID @"ncc_session_device_id"
 
 @implementation NCCSession
 
@@ -97,7 +98,7 @@ static NSString *bundleShortVersion;
     BOOL success = NO;
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:_userId forKey:SESSION_USER_ID];
+    [userDefaults setObject:_userId forKey:NCCSESSION_USER_ID];
     [userDefaults synchronize];
     if (self.userInfo) {
         success = [_keychainManager saveCredentials:self.userInfo forUser:_userId];
@@ -123,7 +124,7 @@ static NSString *bundleShortVersion;
 
 + (instancetype)sessionWithService:(NSString *)service;
 {
-    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:SESSION_USER_ID];
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:NCCSESSION_USER_ID];
     
     return [self sessionWithService:service userId:userId];
 }
@@ -131,11 +132,20 @@ static NSString *bundleShortVersion;
 #pragma mark - Getters / Setters
 + (NSString *)uuid
 {
-    if (!uuid) {
-        uuid = [NSString uuid];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *uuidString = [userDefaults objectForKey:NCCSESSION_DEVICE_ID];
+    
+    if (!uuidString) {
+        CFUUIDRef uuid = CFUUIDCreate(NULL);
+        if (uuid) {
+            uuidString = (NSString *)CFBridgingRelease(CFUUIDCreateString(NULL, uuid));
+            CFRelease(uuid);
+            
+            [userDefaults setObject:uuidString forKey:NCCSESSION_DEVICE_ID];
+        }
     }
     
-    return uuid;
+    return uuidString;
 }
 
 + (NSString *)bundleShortVersion
