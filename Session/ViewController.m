@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "NCCSession.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
 
 @end
 
@@ -22,6 +25,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)didPressLoginButton:(id)sender {
+}
+- (IBAction)didPressLogoutButton:(id)sender {
 }
 
 @end

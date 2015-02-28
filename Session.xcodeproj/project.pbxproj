@@ -16,6 +16,7 @@
 		DC1B6FB81A0883C9001CC514 /* SessionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1B6FB71A0883C9001CC514 /* SessionTests.m */; };
 		DC9576D61A0BBE01009F06A8 /* NCCKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9576D31A0BBE01009F06A8 /* NCCKeychainManager.m */; };
 		DC9576D71A0BBE01009F06A8 /* NCCSession.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9576D51A0BBE01009F06A8 /* NCCSession.m */; };
+		DCD069551AA23610004A0A6E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD069541AA23610004A0A6E /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		DC9576D31A0BBE01009F06A8 /* NCCKeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCCKeychainManager.m; sourceTree = "<group>"; };
 		DC9576D41A0BBE01009F06A8 /* NCCSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCCSession.h; sourceTree = "<group>"; };
 		DC9576D51A0BBE01009F06A8 /* NCCSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCCSession.m; sourceTree = "<group>"; };
+		DCD069531AA23610004A0A6E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		DCD069541AA23610004A0A6E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,8 @@
 			children = (
 				DC1B6F9F1A0883C9001CC514 /* AppDelegate.h */,
 				DC1B6FA01A0883C9001CC514 /* AppDelegate.m */,
+				DCD069531AA23610004A0A6E /* User.h */,
+				DCD069541AA23610004A0A6E /* User.m */,
 				DC1B6FA21A0883C9001CC514 /* ViewController.h */,
 				DC1B6FA31A0883C9001CC514 /* ViewController.m */,
 				DC1B6FA51A0883C9001CC514 /* Main.storyboard */,
@@ -239,6 +244,7 @@
 			files = (
 				DC1B6FA41A0883C9001CC514 /* ViewController.m in Sources */,
 				DC1B6FA11A0883C9001CC514 /* AppDelegate.m in Sources */,
+				DCD069551AA23610004A0A6E /* User.m in Sources */,
 				DC9576D61A0BBE01009F06A8 /* NCCKeychainManager.m in Sources */,
 				DC1B6F9E1A0883C9001CC514 /* main.m in Sources */,
 				DC9576D71A0BBE01009F06A8 /* NCCSession.m in Sources */,

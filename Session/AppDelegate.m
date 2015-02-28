@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "NCCSession.h"
+#import "User.h"
+
+#define SERVICE @"com.browncoatapps"
 
 @interface AppDelegate ()
 
@@ -17,6 +21,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [NCCSession sessionWithService:SERVICE];
+    if ([NCCSession isValid]) {
+        User *currentUser = [User userWithId:[[NCCSession sharedSession] userInfo][@"id"]]];
+    } else {
+        [User deleteAllUsers];
+    }
+    
     return YES;
 }
 
