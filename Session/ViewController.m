@@ -38,6 +38,8 @@
         _passwordTextField.text = _user.password;
         _firstNameTextField.text = _user.firstName;
         _lastNameTextField.text = _user.lastName;
+    } else {
+        _user = [User user];
     }
 }
 
@@ -45,6 +47,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)showUserWithId:(NSString *)uid
+{
+    User *user = [User userWithId:uid];
+    
+    _usernameTextField.text = user.username;
+    _passwordTextField.text = user.password;
+    _firstNameTextField.text = user.firstName;
+    _lastNameTextField.text = user.lastName;
+}
+
+#pragma mark - Actions
 
 - (IBAction)didPressSaveButton:(id)sender
 {
@@ -68,6 +82,32 @@
     _passwordTextField.text = @"";
     _firstNameTextField.text = @"";
     _lastNameTextField.text = @"";
+}
+
+#pragma mark - UIPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [User allUsers].count;
+}
+
+#pragma mark - UIPickerViewDelegate
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    User *user = [User allUsers][row];
+    return user.uid;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    User *user = [User allUsers][row];
+    [self showUserWithId:user.uid];
 }
 
 @end

@@ -7,16 +7,48 @@
 //
 
 #import "User.h"
+#import "AppDelegate.h"
+#include "NCCSession.h"
 
 #define USERS @"users"
+#define UID @"uid"
+#define USERNAME @"username"
+#define FIRSTNAME @"firstName"
+#define LASTNAME @"lastName"
+#define PASSWORD @"password"
 
 @implementation User
 
 + (instancetype)userWithId:(NSString *)uid
 {
-    User *user = [[User users] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"uid == %@", uid]].lastObject;
+    NCCSession *session = [NCCSession sessionWithService:SERVICE userId:uid];
+    
+    User *user = [self user];
+    user.uid = [session userId];
+    user.username = [session userInfo][USERNAME];
+    user.firstName = [session userInfo][FIRSTNAME];
+    user.lastName = [session userInfo][LASTNAME];
+    user.password = [session userInfo][SESSION_TOKEN_NAME];
     
     return user;
+}
+
++ (instancetype)user
+{
+    User *user = [[[self class] alloc] init];
+    user.uid = [NCCSession uuid];
+    return user;
+}
+
++ (NSArray *)allUsers
+{
+    NSArray *usersData = [[self userDefaults] objectForKey:USERS];
+    NSMutableArray *users = [NSMutableArray array];
+    for (NSData *userData in usersData) {
+        [users addObject:[NSKeyedUnarchiver unarchiveObjectWithData:userData]];
+    }
+    
+    return users;
 }
 
 + (NSUserDefaults *)userDefaults
@@ -24,36 +56,70 @@
     return [NSUserDefaults standardUserDefaults];
 }
 
-+ (NSMutableArray *)users
-{
-    NSMutableArray *users = [NSMutableArray arrayWithArray:[[self userDefaults] objectForKey:USERS]];
-    
-    return users;
-}
-
 - (void)save
 {
-    NSMutableArray *users = [User users];
-    User *user = [users filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"uid == %@", self.uid]].lastObject;
-    if (user) {
-        self.uid = user.uid;
-        [users removeObject:user];
-    } else {
-        self.uid = [[NSUUID UUID] UUIDString];
-    }
-    
+    NSMutableArray *users = [NSMutableArray arrayWithArray:[User allUsers]];
+    User *previousUser = [users filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"uid == %@", self.uid]].lastObject;
+    [users removeObject:previousUser];
     [users addObject:self];
     
-    [[User userDefaults] setObject:users forKey:USERS];
+    NSMutableArray *usersData = [NSMutableArray array];
+    for (User *user in users) {
+        [usersData addObject:[NSKeyedArchiver archivedDataWithRootObject:user]];
+    }
+    
+    [[User userDefaults] setObject:usersData forKey:USERS];
+    [[User userDefaults] synchronize];
+    
+    [self createSession];
+}
+
+- (NSDictionary *)dictionaryForSave
+{
+    return @{USERNAME:self.username,
+             FIRSTNAME:self.firstName,
+             LASTNAME:self.lastName};
+}
+
+- (void)createSession
+{
+    NSString *token = self.password;
+    NSString *userId = self.uid;
+    [NCCSession createSessionWithUserId:userId userInfo:@{SESSION_TOKEN_NAME:token,
+                                                          USERNAME:self.username} service:SERVICE];
 }
 
 - (void)delete
 {
-    NSMutableArray *users = [User users];
+    NSMutableArray *users = [NSMutableArray arrayWithArray:[User allUsers]];
     User *user = [users filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"uid == %@", self.uid]].lastObject;
     [users removeObject:user];
     
-    [[User userDefaults] setObject:users forKey:USERS];
+    NSMutableArray *usersData = [NSMutableArray array];
+    for (User *user in users) {
+        [usersData addObject:[NSKeyedArchiver archivedDataWithRootObject:user]];
+    }
+    
+    [[User userDefaults] setObject:usersData forKey:USERS];
+}
+
+#pragma mark - NSCoding
+
+- (id)initWithCoder:(NSCoder *)coder {
+    self = [super init];
+    if (self) {
+        _firstName = [coder decodeObjectForKey:FIRSTNAME];
+        _lastName = [coder decodeObjectForKey:LASTNAME];
+        _uid = [coder decodeObjectForKey:UID];
+    }
+    return self;
+}
+
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.firstName forKey:FIRSTNAME];
+    [coder encodeObject:self.lastName forKey:LASTNAME];
+    [coder encodeObject:self.uid forKey:UID];
 }
 
 @end

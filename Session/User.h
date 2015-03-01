@@ -8,15 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface User : NSObject
-
-+ (instancetype)userWithId:(NSString *)uid;
+@interface User : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSString *uid;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
+
++ (instancetype)userWithId:(NSString *)uid;
++ (instancetype)user;
++ (NSArray *)allUsers;
 
 - (void)save;
 - (void)delete;

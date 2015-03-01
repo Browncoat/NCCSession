@@ -16,6 +16,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2lS-jN-986">
+                                <rect key="frame" x="277" y="208" width="34" height="30"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressSaveButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nyv-WJ-Jme"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xf7-Fk-tbR">
                                 <rect key="frame" x="272" y="246" width="44" height="30"/>
                                 <state key="normal" title="Delete">
@@ -45,25 +54,33 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2lS-jN-986">
-                                <rect key="frame" x="277" y="208" width="34" height="30"/>
-                                <state key="normal" title="Save">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HcF-0X-5hX">
+                                <rect key="frame" x="249" y="397" width="103" height="30"/>
+                                <state key="normal" title="Get User By ID">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="didPressSaveButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nyv-WJ-Jme"/>
-                                </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HxS-z3-1cc">
+                                <rect key="frame" x="0.0" y="435" width="600" height="162"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="1Ou-FH-SGj"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="GMl-zz-5uQ"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="2lS-jN-986" secondAttribute="centerX" id="6V4-Mj-siG"/>
+                            <constraint firstAttribute="centerX" secondItem="HcF-0X-5hX" secondAttribute="centerX" id="8Om-zl-Qcl"/>
                             <constraint firstItem="1dF-S2-4Pz" firstAttribute="top" secondItem="roL-nD-HS6" secondAttribute="bottom" constant="8" id="9Od-PX-Obe"/>
                             <constraint firstAttribute="centerX" secondItem="1dF-S2-4Pz" secondAttribute="centerX" id="AS0-m5-Mal"/>
                             <constraint firstAttribute="centerX" secondItem="BVJ-en-MoY" secondAttribute="centerX" id="eZx-kH-DsO"/>
                             <constraint firstItem="xX5-Fi-nNw" firstAttribute="top" secondItem="BVJ-en-MoY" secondAttribute="bottom" constant="8" id="fMB-Ln-bA8"/>
                             <constraint firstItem="roL-nD-HS6" firstAttribute="top" secondItem="xX5-Fi-nNw" secondAttribute="bottom" constant="8" id="iFH-tq-Tkm"/>
                             <constraint firstItem="BVJ-en-MoY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="18" id="igu-kN-xsH"/>
+                            <constraint firstAttribute="centerX" secondItem="HxS-z3-1cc" secondAttribute="centerX" id="jWs-bu-9NI"/>
+                            <constraint firstItem="HxS-z3-1cc" firstAttribute="top" secondItem="HcF-0X-5hX" secondAttribute="bottom" constant="8" id="lgW-zE-3xd"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HxS-z3-1cc" secondAttribute="bottom" constant="3" id="mDk-ns-fms"/>
                             <constraint firstAttribute="centerX" secondItem="xX5-Fi-nNw" secondAttribute="centerX" id="mc9-Aw-sYO"/>
                             <constraint firstItem="2lS-jN-986" firstAttribute="top" secondItem="1dF-S2-4Pz" secondAttribute="bottom" constant="26" id="qHd-4C-qZH"/>
                             <constraint firstItem="xf7-Fk-tbR" firstAttribute="top" secondItem="2lS-jN-986" secondAttribute="bottom" constant="35" id="qu5-o0-YlU"/>

@@ -9,8 +9,6 @@
 #import "AppDelegate.h"
 #import "NCCSession.h"
 
-#define SERVICE @"com.browncoatapps"
-
 @interface AppDelegate ()
 
 @end
