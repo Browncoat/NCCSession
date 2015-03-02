@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
+@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 
 @end
 
@@ -34,10 +35,7 @@
     
     _user = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user];
     if (_user) {
-        _usernameTextField.text = _user.username;
-        _passwordTextField.text = _user.password;
-        _firstNameTextField.text = _user.firstName;
-        _lastNameTextField.text = _user.lastName;
+        [self updateTextFields];
     } else {
         _user = [User user];
     }
@@ -48,20 +46,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)updateTextFields
+{
+    _usernameTextField.text = _user.username;
+    _passwordTextField.text = _user.password;
+    _firstNameTextField.text = _user.firstName;
+    _lastNameTextField.text = _user.lastName;
+}
+
 - (void)showUserWithId:(NSString *)uid
 {
-    User *user = [User userWithId:uid];
+    _user = [User userWithId:uid];
     
-    _usernameTextField.text = user.username;
-    _passwordTextField.text = user.password;
-    _firstNameTextField.text = user.firstName;
-    _lastNameTextField.text = user.lastName;
+    [self updateTextFields];
 }
 
 #pragma mark - Actions
 
 - (IBAction)didPressSaveButton:(id)sender
 {
+    [self.view endEditing:YES];
+    
     if (_user) {
         _user.username = _usernameTextField.text;
         _user.password = _passwordTextField.text;
@@ -69,19 +74,34 @@
         _user.lastName = _lastNameTextField.text;
         
         [_user save];
+        
+        [_pickerView reloadAllComponents];
     }
 }
 
 - (IBAction)didPressDeleteButton:(id)sender
 {
+    [self.view endEditing:YES];
+    
     if (_user) {
         [_user delete];
+        _user = nil;
     }
     
-    _usernameTextField.text = @"";
-    _passwordTextField.text = @"";
-    _firstNameTextField.text = @"";
-    _lastNameTextField.text = @"";
+    [self updateTextFields];
+    
+    [_pickerView reloadAllComponents];
+}
+
+- (IBAction)didPressNewUser:(id)sender
+{
+    [self.view endEditing:YES];
+    
+    _user = [User user];
+    
+    [self updateTextFields];
+    
+    [_pickerView reloadAllComponents];
 }
 
 #pragma mark - UIPickerViewDataSource
@@ -108,6 +128,15 @@
 {
     User *user = [User allUsers][row];
     [self showUserWithId:user.uid];
+}
+
+#pragma MARK - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.view endEditing:YES];
+    
+    return NO;
 }
 
 @end

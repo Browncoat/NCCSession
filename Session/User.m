@@ -23,11 +23,10 @@
 {
     NCCSession *session = [NCCSession sessionWithService:SERVICE userId:uid];
     
-    User *user = [self user];
-    user.uid = [session userId];
+    NSArray *users = [self allUsers];
+    User *user = [users filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"uid == %@", uid]].lastObject;
+    
     user.username = [session userInfo][USERNAME];
-    user.firstName = [session userInfo][FIRSTNAME];
-    user.lastName = [session userInfo][LASTNAME];
     user.password = [session userInfo][SESSION_TOKEN_NAME];
     
     return user;
@@ -36,7 +35,7 @@
 + (instancetype)user
 {
     User *user = [[[self class] alloc] init];
-    user.uid = [NCCSession uuid];
+    user.uid = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
     return user;
 }
 
